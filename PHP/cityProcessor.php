@@ -4,6 +4,7 @@
 // Description: This php file opens a data base connection, takes in input 
 // from an html form, validates it, adds it to the database, and then outputs
 // everything in the database. 
+// This program uses styles.css for styling certain elements.
 //****************************************************************************
 <?php
 // link to CSS file for formatting
