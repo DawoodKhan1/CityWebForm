@@ -1,3 +1,4 @@
+<?php
 //****************************************************************************
 // Programmar: Dawood Khan
 // 
@@ -6,7 +7,6 @@
 // everything in the database. 
 // This program uses styles.css for styling certain elements.
 //****************************************************************************
-<?php
 // link to CSS file for formatting
 echo '<link href="styles.css" rel="stylesheet">';
 // attempt to connect to database
