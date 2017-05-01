@@ -1,0 +1,34 @@
+//***********************************************************
+// Programmar: Dawood Khan
+//
+// Description: The first one define styles for the html form
+// and the last two for outputting the data base in the server
+// side in php.
+//***********************************************************
+<style>
+/* This is the class for displaying what information the form 
+needs which should have even spacing */
+legend {
+    margin: auto;
+}
+
+/* This is the class for displaying what the text within 
+the input boxes */
+.field{
+    font-family: times new roman;
+    font-size: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px; 
+}
+
+/* these are for displaying the data base */
+table {
+	width: 100%;
+	border: 5px solid black;
+	border-collapse: collapse;
+}
+th, td {
+	text-align: left;
+	border: 1px solid black;
+}
+</style>
