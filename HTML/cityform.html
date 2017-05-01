@@ -1,0 +1,124 @@
+<!-- 
+Programmar: Dawood Khan
+
+Description: This defines a form in html. It takes in city name, state, and 
+population. 
+It validates all the fields using javascript before the form is
+submitted with invalid data. 
+It then submits it to a php file that also validates data and then
+stores into a database and then outputs it.
+This uses  styles.css for css style and cityProcessor.php to pass the 
+information to the server.              -->
+<!DOCTYPE html>
+<title> City Form </title>
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+//****************************************************************************
+// Function Name: checkForm
+// 
+// Description: This function is called when the form is going to submitted.
+// this function tests all the fields in the form to make sure they are valid.
+// the city names and state names can only have alphabetic or spaces and the
+// population is at least 0 and is a number. Returns a boolean depending if
+// the input passed all validation. The html form fields are required so this
+// does not have to check if they are empty even though it does.
+// 
+// Precondition: All the fields in the form must be initialized and submitted.
+//
+// PostCondition: returns true if data is valid, false otherwise
+//****************************************************************************
+function checkForm(){
+    //client side (JS) validation. This happens before submitting.
+
+    // --- VALIDATE CITY FIELD ---
+    // gets the city name field from the form
+    var cityNameText = document.forms[0].cityName.value;
+    var cityLength = cityNameText.length;   // length of city name
+    // removing leading and trailing whitespace
+    cityNameText = cityNameText.trim();
+    // testing if the city name is valid
+    if (cityLength == 0) {
+        return false;
+    }
+
+    for (var i = 0; i < cityLength; i++) {
+        // test if all the characters are alphabetic or space using regex
+        // for a-z, A-Z and ' '
+        if ( !(/^[a-zA-Z() ]+$/.test(cityNameText[i])) ) {
+            // if it is an invalid character, display a message
+            alert("The city name can only have alpha and space characters.");
+            return false;
+        }
+    }
+
+    // --- VALIDATE STATE FIELD ---
+    // checking if the state name is valid
+    // gets the state name field from the form
+    var stateNameText = document.forms[0].state.value;
+    var stateLength = stateNameText.length; // length of state name
+    stateNameText = stateNameText.trim();   // removing white space
+    
+    if (stateLength == 0) {
+        return false;
+    }
+    for (var i = 0; i < stateLength; i++) {
+        // test if all the characters are alphabetic or space using regex
+        // for a-z, A-Z and ' '
+        if ( !(/^[a-zA-Z() ]+$/.test(stateNameText[i])) ) {
+            // if it is an invalid character, display a message
+            alert("The state name can only have alpha and space characters.");
+            return false;
+        }
+    }
+
+    // --- VALIDATE POPULATION FIELD ---
+    // test if the population count is a number >= 0
+    // gets the population field from the form
+    var populationCount = document.forms[0].population.value;
+    // if it is not a number of if it less than 0, it is invalid
+    if (isNaN(populationCount) || populationCount < 0) {
+        // if it is an invalid character, display a message
+        alert("Population is not a valid number of at least 0.");
+        return false;
+    }
+
+    // return true if all checks have passed, false otherwise.
+    // the return value of this function is checked before submit. 
+    // The form is submitted only when this function returns a true.
+    return true;
+}
+</script>
+</head>
+<body>
+            <!-- ----  CITY INFORMATION FORM   ----  -->
+<!-- this form will send the information to cityProcessor.php and will call
+    checkForm() for validating before submitting the form.    -->
+<form action="cityProcessor.php" method="post" onsubmit="return checkForm()">
+	<!-- Group the fields together with fieldset -->
+	<fieldset>
+    <legend> City Information </legend>
+    <!-- Next we want to get city name, state, and population
+    displaying what should be entered using placeholder and min values
+    where needed and making every field required 
+    as well as ouputting an error message if field is blank -->
+    
+    <!-- Take in the city name -->
+    <input class="field" type="text" required name="cityName" 
+    placeholder="City Name" autofocus maxlength="50"><br><br>
+
+    <!-- Take in the state name -->
+	<input class="field" type="text" required name="state" 
+    placeholder="State" maxlength="50"><br><br>   
+         
+    <!-- Take in the population of the city -->
+    <input id="num" class="field" type="number" required name="population"
+    placeholder="Population" min="0"> <p id="populationText"></p><br>
+    
+	<!-- lastly submit the form will call checkForm() beforehand -->
+	<input type="submit" onclick="myFunction()" value="Submit">
+    </fieldset>
+</form>
+</body>
+</html>
